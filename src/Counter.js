@@ -3,14 +3,14 @@ import { Button } from './Button.js'
 
 export const Counter = class {
 
-    constructor(selector) {
+    constructor(selector, startNumber = 0) {
         const container = document.querySelector(selector)
 
         if (!container) throw new Error('Container element not found')
 
         this.selector = selector
         this.container = container
-        this.number = 0
+        this.number = startNumber
     }
 
     init() {
