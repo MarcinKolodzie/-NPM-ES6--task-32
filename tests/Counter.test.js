@@ -3,20 +3,24 @@ import DecreasingCounter from '../src/DecreasingCounter'
 
 const originalLogFn = console.log
 const originalRenderFn = Counter.prototype.render
+const originalDecRenderFn = DecreasingCounter.prototype.render
 
 beforeAll(() => {
     console.log = jest.fn()
     Counter.prototype.render = jest.fn()
+    DecreasingCounter.prototype.render = jest.fn()
 })
 
 beforeEach(() => {
     console.log.mockReset()
     Counter.prototype.render.mockReset()
+    DecreasingCounter.prototype.render.mockReset()
 })
 
 afterAll(() => {
     console.log = originalLogFn
     Counter.prototype.render = originalRenderFn
+    DecreasingCounter.prototype.render = originalDecRenderFn
 })
 
 describe('Counter', () => {
@@ -219,6 +223,29 @@ describe('DecreasingCounter', () => {
             decreasingCounter1.dec()
 
             expect(decreasingCounter1.number).toBe(122)
+
+        })
+
+    })
+
+    describe('rendering', () => {
+
+        it('should not call render just after creation', () => {
+
+            const decresingcounter1 = new DecreasingCounter('body')
+
+            expect(decresingcounter1.render).not.toHaveBeenCalled()
+
+        })
+
+        it('should call render after `.init` method call', () => {
+
+            const decresingcounter1 = new DecreasingCounter('body')
+
+            decresingcounter1.init()
+
+            expect(decresingcounter1.render).toHaveBeenCalled()
+            expect(decresingcounter1.render).toHaveBeenCalledTimes(1)
 
         })
 
