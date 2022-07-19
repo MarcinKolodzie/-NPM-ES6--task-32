@@ -179,13 +179,22 @@ describe('Counter', () => {
 
 describe('DecreasingCounter', () => {
 
-    describe('buisness logic - increasing, decreasing', () => {
+    describe('class public fields', () => {
 
         it('DecreasingCounter should be an ES6 class instance', () => {
 
             expect(() => DecreasingCounter()).toThrow("Cannot call a class as a function")
 
         })
-    })
 
+        it('DecreasingCounter should inherit after Counter', () => {
+
+            const decreasingCounter1 = new DecreasingCounter('body')
+
+            expect(decreasingCounter1).toBeInstanceOf(Counter)
+
+        })
+
+    })
 })
+
