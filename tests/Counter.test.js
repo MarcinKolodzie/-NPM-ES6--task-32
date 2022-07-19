@@ -2,11 +2,22 @@ import Counter from '../src/Counter'
 import DecreasingCounter from '../src/DecreasingCounter'
 
 const originalLogFn = console.log
+const originalRenderFn = Counter.prototype.render
 
-beforeAll(() => console.log = jest.fn())
-afterAll(() => console.log = originalLogFn)
+beforeAll(() => {
+    console.log = jest.fn()
+    Counter.prototype.render = jest.fn()
+})
 
-beforeEach(() => console.log.mockReset())
+beforeEach(() => {
+    console.log.mockReset()
+    Counter.prototype.render.mockReset()
+})
+
+afterAll(() => {
+    console.log = originalLogFn
+    Counter.prototype.render = originalRenderFn
+})
 
 describe('Counter', () => {
 
@@ -127,6 +138,41 @@ describe('Counter', () => {
             expect(counter1.valueOf()).toBe(counter1.number)
 
         })
+    })
+
+    describe('rendering', () => {
+
+        it('should not call render just after creation', () => {
+
+            const counter1 = new Counter('body')
+
+            expect(counter1.render).not.toHaveBeenCalled()
+
+        })
+
+        it('should call render after `.init` method call', () => {
+
+            const counter1 = new Counter('body')
+
+            counter1.init()
+
+            expect(counter1.render).toHaveBeenCalled()
+            expect(counter1.render).toHaveBeenCalledTimes(1)
+
+        })
+
+        it('should call render after `.inc` method call', () => {
+
+            const counter1 = new Counter('body')
+
+            counter1.inc()
+            counter1.inc()
+
+            expect(counter1.render).toHaveBeenCalled()
+            expect(counter1.render).toHaveBeenCalledTimes(2)
+
+        })
+
     })
 
 })
