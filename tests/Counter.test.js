@@ -30,7 +30,7 @@ describe('Counter', () => {
 
         })
 
-        it('should have number property for storing data', () => {
+        it('should have `number` property for storing data', () => {
 
             const counter1 = new Counter('body')
 
@@ -38,7 +38,7 @@ describe('Counter', () => {
 
         })
 
-        it('should have selector property for storing passed selector', () => {
+        it('should have `selector` property for storing passed selector', () => {
 
             const selector = 'body'
             const counter1 = new Counter(selector)
@@ -48,7 +48,7 @@ describe('Counter', () => {
 
         })
 
-        it('should have container property for storing found HTML element', () => {
+        it('should have `container` property for storing found HTML element', () => {
 
             const counter1 = new Counter('body')
 
@@ -60,7 +60,7 @@ describe('Counter', () => {
 
     })
 
-    describe('buisness logic - increasing, decreasing', () => {
+    describe('buisness logic - increasing,  and decreasing', () => {
 
         it('should start from 0', () => {
 
@@ -196,5 +196,33 @@ describe('DecreasingCounter', () => {
         })
 
     })
+
+    describe('buisness logic - increasing,  and decreasing', () => {
+
+
+        it('should have `.dec` method which increasing stored number by one', () => {
+
+            const decreasingCounter1 = new DecreasingCounter('body')
+
+            expect(decreasingCounter1.dec).toBeDefined()
+            expect(decreasingCounter1.dec).toBeInstanceOf(Function)
+            expect(() => decreasingCounter1.dec()).not.toThrow()
+
+            expect(decreasingCounter1.number).toBe(-1)
+
+        })
+
+        it('should have `.dec` method which decreasing stored number by one if start value is specified', () => {
+
+            const decreasingCounter1 = new DecreasingCounter('body', 123)
+
+            decreasingCounter1.dec()
+
+            expect(decreasingCounter1.number).toBe(122)
+
+        })
+
+    })
+
 })
 
