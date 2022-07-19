@@ -19,7 +19,7 @@ export const Counter = class {
 
     render() {
 
-        this.container.innerText = ''
+        this.container.innerHTML = ''
 
         const h1 = new Header(this.number)
         const button = new Button('+', () => this.inc())

@@ -39,6 +39,18 @@ describe('Counter', () => {
 
     })
 
+    it('should render incerased value after click', () => {
+
+        const { button } = initCounter()
+
+        button.click()
+
+        const h1 = document.querySelector('h1')
+
+        expect(h1.innerText).toBe(1)
+
+    })
+
 })
 
 describe('DecreasingCounter', () => {
