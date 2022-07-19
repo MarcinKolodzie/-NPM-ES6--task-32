@@ -7,35 +7,35 @@ describe('Counter', () => {
         document.body.innerHTML = ''
     })
 
-    it('should render start state', () => {
+    const initCounter = (startNumber) => {
+        const counter = new Counter('body', startNumber)
+        counter.init()
 
-        const counter1 = new Counter('body')
-        counter1.init()
-
-        const h1 = counter1.container.querySelector('h1')
-        const button = counter1.container.querySelector('button')
+        const h1 = counter.container.querySelector('h1')
+        const button = counter.container.querySelector('button')
 
         expect(h1).toBeInstanceOf(HTMLHeadingElement)
         expect(button).toBeInstanceOf(HTMLButtonElement)
 
-        expect(h1.innerText).toBe(0)
         expect(button.innerText).toBe('+')
+
+        return { counter, h1, button }
+
+    }
+
+    it('should render start state', () => {
+
+        const { h1 } = initCounter()
+
+        expect(h1.innerText).toBe(0)
 
     })
 
     it('should render start state with 5 number', () => {
 
-        const counter1 = new Counter('body', 5)
-        counter1.init()
-
-        const h1 = counter1.container.querySelector('h1')
-        const button = counter1.container.querySelector('button')
-
-        expect(h1).toBeInstanceOf(HTMLHeadingElement)
-        expect(button).toBeInstanceOf(HTMLButtonElement)
+        const { h1 } = initCounter(5)
 
         expect(h1.innerText).toBe(5)
-        expect(button.innerText).toBe('+')
 
     })
 
