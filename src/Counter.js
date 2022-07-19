@@ -23,9 +23,15 @@ export const Counter = class {
 
         const h1 = new Header(this.number)
         const button = new Button('+', () => this.inc())
+        
+        const h1Rendered = h1.render()
+        const buttonRendered = button.render()
 
-        this.container.appendChild(h1.render())
-        this.container.appendChild(button.render())
+        h1Rendered.setAttribute('data-test', 'counter__header')
+        buttonRendered.setAttribute('data-test', 'counter__button--inc')
+
+        this.container.appendChild(h1Rendered)
+        this.container.appendChild(buttonRendered)
 
     }
 

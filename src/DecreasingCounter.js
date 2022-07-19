@@ -17,7 +17,12 @@ export const DecreasingCounter = class extends Counter {
 
         const button = new Button('-', () => this.dec())
 
-        this.container.appendChild(button.render())
+        const buttonRendered = button.render()
+
+        buttonRendered.setAttribute('data-test', 'counter__button--dec')
+
+
+        this.container.appendChild(buttonRendered)
     }
 
 }
