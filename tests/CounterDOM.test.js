@@ -49,6 +49,30 @@ describe('Counter', () => {
 
     })
 
+    
+    it('should render incerased by 3 value after 3 click', () => {
+
+        const {getH1, getButton } = initCounter()
+
+        getButton().click()
+        getButton().click()
+        getButton().click()
+
+        expect(getH1().innerText).toBe(3)
+
+    })
+
+    it('should render increased value after direct `.inc` call', () => {
+
+        const {getH1, counter } = initCounter()
+
+        counter.inc()
+
+        expect(getH1().innerText).toBe(1)
+
+    })
+
+
 })
 
 describe('DecreasingCounter', () => {
