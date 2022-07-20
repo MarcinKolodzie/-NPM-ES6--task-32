@@ -13,6 +13,7 @@
   },
   "author": "MK",
   "license": "MIT",
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.11.4",
     "@babel/preset-env": "^7.11.0",
@@ -26,9 +27,13 @@
     "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
-  },
-  "dependencies": {
+    "webpack-dev-server": "^3.11.0",
+    "husky": "^4.3.0",
     "jest": "^26.5.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
   }
 }
